@@ -10,4 +10,4 @@ Execution time on MacBook Air M1
 
 | Go                              | Part One | Part Two |
 | ------------------------------- | -------- | -------- |
-| [day 01](./go/2023/01/day01.go) | `28 µs`  | `84 μs`  |
+| [day 01](./go/2023/01/day01.go) | `11 µs`  | `66 μs`  |
