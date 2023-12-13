@@ -9,9 +9,7 @@ import (
 //go:embed input.txt
 var input string
 
-func part1(input string) int {
-	lines := strings.Split(input, "\n")
-
+func part1(lines []string) int {
 	var first, last, sum int
 	for _, line := range lines {
 		for i := range line {
@@ -34,8 +32,7 @@ func part1(input string) int {
 	return sum
 }
 
-func part2(input string) int {
-	lines := strings.Split(input, "\n")
+func part2(lines []string) int {
 	digits := []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
 	var first, last, sum int
@@ -46,6 +43,7 @@ func part2(input string) int {
 				first = int(line[i] - '0')
 				break
 			}
+
 			for j, digit := range digits {
 				for k := 0; k < len(digit) && i+k < len(line) && line[i+k] == digit[k]; k++ {
 					if len(digit)-1 == k {
@@ -62,6 +60,7 @@ func part2(input string) int {
 				last = int(line[i] - '0')
 				break
 			}
+
 			for j, digit := range digits {
 				for k := 0; k < len(digit) && i-k >= 0 && line[i-k] == digit[len(digit)-1-k]; k++ {
 					if len(digit)-1 == k {
@@ -79,7 +78,9 @@ func part2(input string) int {
 }
 
 func main() {
+	lines := strings.Split(input, "\n")
+
 	fmt.Println("--- 2023 day 01 answer ---")
-	fmt.Println("part 1:\t", part1(input))
-	fmt.Println("part 2:\t", part2(input))
+	fmt.Println("part 1:\t", part1(lines))
+	fmt.Println("part 2:\t", part2(lines))
 }
