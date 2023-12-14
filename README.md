@@ -19,3 +19,4 @@ go test -bench=. -count=10 ./... > bench.txt && benchstat bench.txt
 | Go                              | Part One | Part Two |
 | ------------------------------- | -------- | -------- |
 | [day 01](./go/2023/01/day01.go) | `11 µs`  | `66 μs`  |
+| [day 02](./go/2023/02/day02.go) | `2.5 µs` | `3.6 μs` |
