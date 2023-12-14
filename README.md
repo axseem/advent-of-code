@@ -4,9 +4,17 @@
 
 Solutions for the annual programming competition "Advent of Code"
 
-## 2023
+# Efficiency
 
-Execution time on MacBook Air M1
+All the benchmarks were executed on the MacBook Air M1.
+
+The method I used to check the efficiency of the solutions:
+
+```sh
+go test -bench=. -count=10 ./... > bench.txt && benchstat bench.txt
+```
+
+## 2023
 
 | Go                              | Part One | Part Two |
 | ------------------------------- | -------- | -------- |
