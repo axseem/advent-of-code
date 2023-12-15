@@ -8,10 +8,12 @@ Solutions for the annual programming competition "Advent of Code"
 
 All the benchmarks were executed on the MacBook Air M1.
 
-The method I used to check the efficiency of the solutions:
+The way I check the efficiency of the solutions:
 
 ```sh
-go test -bench=. -count=10 ./... > bench.txt && benchstat bench.txt
+cd go
+go test -bench=. -count=10 ./... > bench.txt
+benchstat bench.txt
 ```
 
 ## 2023
