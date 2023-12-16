@@ -38,17 +38,20 @@ func part2(lines []string) int {
 	var first, last, sum int
 	for _, line := range lines {
 	FirstLoop:
-		for i := range line {
-			if line[i] >= '1' && line[i] <= '9' {
-				first = int(line[i] - '0')
+		for i := 0; i < len(line); i++ {
+			b := line[i]
+			if b >= '1' && b <= '9' {
+				first = int(b - '0')
 				break
 			}
 
-			for j, digit := range digits {
-				for k := 0; k < len(digit) && i+k < len(line) && line[i+k] == digit[k]; k++ {
-					if len(digit)-1 == k {
-						first = j + 1
-						break FirstLoop
+			if b == 'e' || b == 'f' || b == 'n' || b == 'o' || b == 's' || b == 't' {
+				for j, digit := range digits {
+					for k := 0; line[i+k] == digit[k]; k++ {
+						if len(digit)-1 == k {
+							first = j + 1
+							break FirstLoop
+						}
 					}
 				}
 			}
@@ -56,16 +59,19 @@ func part2(lines []string) int {
 
 	LastLoop:
 		for i := len(line) - 1; i >= 0; i-- {
-			if line[i] >= '1' && line[i] <= '9' {
-				last = int(line[i] - '0')
+			b := line[i]
+			if b >= '1' && b <= '9' {
+				last = int(b - '0')
 				break
 			}
 
-			for j, digit := range digits {
-				for k := 0; k < len(digit) && i-k >= 0 && line[i-k] == digit[len(digit)-1-k]; k++ {
-					if len(digit)-1 == k {
-						last = j + 1
-						break LastLoop
+			if b == 'e' || b == 'n' || b == 'o' || b == 'r' || b == 't' || b == 'x' {
+				for j, digit := range digits {
+					for k := 0; line[i-k] == digit[len(digit)-1-k]; k++ {
+						if len(digit)-1 == k {
+							last = j + 1
+							break LastLoop
+						}
 					}
 				}
 			}
