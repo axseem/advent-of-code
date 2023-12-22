@@ -29,7 +29,8 @@ func getNumber(line *string, index int) int {
 	return number
 }
 
-func part1(lines []string) int {
+func part1(input string) int {
+	lines := strings.Split(input, "\n")
 	var adjacent = [][2]int{{-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1}}
 
 	var sum int
@@ -54,7 +55,8 @@ func part1(lines []string) int {
 	return sum
 }
 
-func part2(lines []string) int {
+func part2(input string) int {
+	lines := strings.Split(input, "\n")
 	var adjacent = [][2]int{{-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1}}
 
 	var sum int
@@ -91,9 +93,7 @@ func part2(lines []string) int {
 }
 
 func main() {
-	lines := strings.Split(input, "\n")
-
 	fmt.Println("--- 2023 day 03 answer ---")
-	fmt.Println("part 1:\t", part1(lines))
-	fmt.Println("part 2:\t", part2(lines))
+	fmt.Println("part 1:\t", part1(input))
+	fmt.Println("part 2:\t", part2(input))
 }

@@ -15,7 +15,9 @@ const (
 	MAX_BLUE  = 14
 )
 
-func part1(lines []string) int {
+func part1(input string) int {
+	lines := strings.Split(input, "\n")
+
 	var sum int
 	for lineIndex, line := range lines {
 		for i := 6; i < len(line); i++ {
@@ -71,7 +73,9 @@ func part1(lines []string) int {
 	return sum
 }
 
-func part2(lines []string) int {
+func part2(input string) int {
+	lines := strings.Split(input, "\n")
+
 	var sum int
 	for _, line := range lines {
 		for i := 6; i < len(line); i++ {
@@ -119,9 +123,7 @@ func part2(lines []string) int {
 }
 
 func main() {
-	lines := strings.Split(input, "\n")
-
 	fmt.Println("--- 2023 day 02 answer ---")
-	fmt.Println("part 1:\t", part1(lines))
-	fmt.Println("part 2:\t", part2(lines))
+	fmt.Println("part 1:\t", part1(input))
+	fmt.Println("part 2:\t", part2(input))
 }
