@@ -2,7 +2,6 @@ package main
 
 import (
 	_ "embed"
-	"strings"
 	"testing"
 )
 
@@ -13,7 +12,7 @@ var inputTest string
 var inputTest2 string
 
 func TestPart1(t *testing.T) {
-	answer := part1(strings.Split(inputTest, "\n"))
+	answer := part1(inputTest)
 	expected := 0
 	if answer != expected {
 		t.Errorf("wrong answer, got: %d, expected: %d.", answer, expected)
@@ -21,7 +20,7 @@ func TestPart1(t *testing.T) {
 }
 
 func TestPart2(t *testing.T) {
-	answer := part2(strings.Split(inputTest2, "\n"))
+	answer := part2(inputTest2)
 	expected := 0
 	if answer != expected {
 		t.Errorf("wrong answer, got: %d, expected: %d.", answer, expected)
@@ -29,7 +28,7 @@ func TestPart2(t *testing.T) {
 }
 
 func TestPart1Input(t *testing.T) {
-	answer := part1(strings.Split(input, "\n"))
+	answer := part1(input)
 	expected := 0
 	if answer != expected {
 		t.Errorf("wrong answer, got: %d, expected: %d.", answer, expected)
@@ -37,7 +36,7 @@ func TestPart1Input(t *testing.T) {
 }
 
 func TestPart2Input(t *testing.T) {
-	answer := part2(strings.Split(input, "\n"))
+	answer := part2(input)
 	expected := 0
 	if answer != expected {
 		t.Errorf("wrong answer, got: %d, expected: %d.", answer, expected)
@@ -45,15 +44,13 @@ func TestPart2Input(t *testing.T) {
 }
 
 func BenchmarkPart1(b *testing.B) {
-	lines := strings.Split(input, "\n")
 	for i := 0; i < b.N; i++ {
-		part1(lines)
+		part1(input)
 	}
 }
 
 func BenchmarkPart2(b *testing.B) {
-	lines := strings.Split(input, "\n")
 	for i := 0; i < b.N; i++ {
-		part2(lines)
+		part2(input)
 	}
 }
