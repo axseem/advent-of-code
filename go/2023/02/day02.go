@@ -3,6 +3,7 @@ package main
 import (
 	_ "embed"
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -20,25 +21,13 @@ func part1(input string) int {
 
 	var sum int
 	for lineIndex, line := range lines {
-		for i := 6; i < len(line); i++ {
-			if line[i] == ':' {
-				line = line[i+2:]
-				break
-			}
-		}
-		// is faster then:
-		// _, line, _ = strings.Cut(line, ": ")
+		_, line, _ = strings.Cut(line, ": ")
 
 		isPossible := true
 		var start int
 		for i := 1; i < len(line); i++ {
 			if line[i] == ' ' {
-				var amount int
-				for j := 0; j < len(line[start:i]); j++ {
-					amount = amount*10 + int(line[start:i][j]-'0')
-				}
-				// is faster then:
-				// amount, _ := strconv.Atoi(line[start:i])
+				amount, _ := strconv.Atoi(line[start:i])
 
 				var r, g, b int
 				switch line[i+1] {
@@ -78,24 +67,12 @@ func part2(input string) int {
 
 	var sum int
 	for _, line := range lines {
-		for i := 6; i < len(line); i++ {
-			if line[i] == ':' {
-				line = line[i+2:]
-				break
-			}
-		}
-		// is faster then:
-		// _, line, _ = strings.Cut(line, ": ")
+		_, line, _ = strings.Cut(line, ": ")
 
 		var start, r, g, b int
 		for i := 1; i < len(line); i++ {
 			if line[i] == ' ' {
-				var amount int
-				for j := 0; j < len(line[start:i]); j++ {
-					amount = amount*10 + int(line[start:i][j]-'0')
-				}
-				// is faster then:
-				// amount, _ := strconv.Atoi(line[start:i])
+				amount, _ := strconv.Atoi(line[start:i])
 
 				switch line[i+1] {
 				case 'r':
