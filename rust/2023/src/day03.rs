@@ -50,9 +50,69 @@ pub fn part1(input: &Vec<Vec<char>>) -> u32 {
     sum
 }
 
+fn get_numbers_entries(input: &Vec<Vec<char>>, row: i32, col: i32) -> Option<Vec<(u32, u32)>> {
+    let mut entries: Vec<(u32, u32)> = Vec::new();
+
+    for shift in -1..=1 {
+        if row + shift >= 0 && row + shift < input.len() as i32 {
+            if input[(row + shift) as usize][col as usize].is_digit(10) {
+                entries.push(((row + shift) as u32, col as u32))
+            } else {
+                if col - 1 >= 0 && input[(row + shift) as usize][(col - 1) as usize].is_digit(10) {
+                    entries.push(((row + shift) as u32, (col - 1) as u32))
+                }
+                if col + 1 < input[0].len() as i32
+                    && input[(row + shift) as usize][(col + 1) as usize].is_digit(10)
+                {
+                    entries.push(((row + shift) as u32, (col + 1) as u32))
+                }
+            }
+        }
+    }
+
+    return match entries.len() {
+        2 => Some(entries),
+        _ => None,
+    };
+}
+
+fn get_number(line: &Vec<char>, entry: u32) -> u32 {
+    let mut start: usize = 0;
+    let mut end = line.len() - 1;
+    for i in (0..=entry).rev() {
+        if !line[i as usize].is_digit(10) {
+            break;
+        }
+        start = i as usize;
+    }
+    for i in entry..line.len() as u32 {
+        if !line[i as usize].is_digit(10) {
+            break;
+        }
+        end = i as usize;
+    }
+    line[start..=end]
+        .iter()
+        .collect::<String>()
+        .parse::<u32>()
+        .unwrap()
+}
+
 #[aoc(day3, part2)]
 pub fn part2(input: &Vec<Vec<char>>) -> u32 {
-    0
+    let mut sum = 0;
+    for (row, line) in input.iter().enumerate() {
+        for (col, char) in line.iter().enumerate() {
+            if *char == '*' {
+                if let Some(entries) = get_numbers_entries(input, row as i32, col as i32) {
+                    let n1 = get_number(&input[entries[0].0 as usize], entries[0].1);
+                    let n2 = get_number(&input[entries[1].0 as usize], entries[1].1);
+                    sum += n1 * n2;
+                }
+            }
+        }
+    }
+    sum
 }
 
 #[cfg(test)]
@@ -77,6 +137,6 @@ mod test {
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(&parse(DATA)), 2286)
+        assert_eq!(part2(&parse(DATA)), 467835)
     }
 }
